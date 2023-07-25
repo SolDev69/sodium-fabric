@@ -9,6 +9,8 @@ import org.spongepowered.asm.mixin.extensibility.IMixinConfigPlugin;
 import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;  // Import the IOException class to handle errors
 import java.util.List;
 import java.util.Set;
 
@@ -23,6 +25,15 @@ public class SodiumMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         try {
             this.config = SodiumConfig.load(new File("./config/sodium-mixins.properties"));
+                try {
+                    FileWriter myWriter = new FileWriter("./config/sodium-mixins.properties");
+                    myWriter.write("mixin.features.chunk_rendering=false");
+                    myWriter.close();
+                    System.out.println("Successfully wrote to the file.");
+                } catch (IOException e) {
+                    System.out.println("An error occurred.");
+                    e.printStackTrace();
+                }
         } catch (Exception e) {
             throw new RuntimeException("Could not load configuration file for Sodium", e);
         }
