@@ -25,15 +25,15 @@ public class SodiumMixinPlugin implements IMixinConfigPlugin {
     public void onLoad(String mixinPackage) {
         try {
             this.config = SodiumConfig.load(new File("./config/sodium-mixins.properties"));
-                try {
-                    FileWriter myWriter = new FileWriter("./config/sodium-mixins.properties");
-                    myWriter.write("mixin.features.chunk_rendering=false");
-                    myWriter.close();
-                    System.out.println("Successfully wrote to the file.");
-                } catch (IOException e) {
-                    System.out.println("An error occurred.");
-                    e.printStackTrace();
-                }
+            try {
+                FileWriter myWriter = new FileWriter("./config/sodium-mixins.properties");
+                myWriter.write("mixin.features.chunk_rendering=false");
+                myWriter.close();
+                System.out.println("Successfully wrote to the file.");
+            } catch (IOException e) {
+                System.out.println("An error occurred.");
+                e.printStackTrace();
+            }
         } catch (Exception e) {
             throw new RuntimeException("Could not load configuration file for Sodium", e);
         }
