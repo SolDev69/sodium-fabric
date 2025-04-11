@@ -29,7 +29,7 @@ public class PostLaunchChecks {
         if (System.getenv("POJAV_RENDERER") != null) {
             LOGGER.warn("Detected presence of environment variable POJAV_LAUNCHER, which seems to indicate we are running on Android");
 
-            return true;
+            return false;
         }
 
         var librarySearchPaths = System.getProperty("java.library.path", null);
